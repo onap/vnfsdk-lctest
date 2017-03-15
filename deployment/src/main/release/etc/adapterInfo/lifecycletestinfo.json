@@ -1,0 +1,14 @@
+{
+  "serviceName": "lifecycleTest",
+  "version": "v1",
+  "url": "/openoapi/vnfsdk/v1",
+  "protocol": "REST",
+  "visualRange": "1",
+  "nodes": [
+    {
+      "ip": "127.0.0.1",
+      "port": "8703",
+      "ttl": 0
+    }
+  ]
+}
