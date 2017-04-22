@@ -1,7 +1,7 @@
 {
-  "serviceName": "lifecycletest",
+  "serviceName": "vnfsdk-lifecycletest",
   "version": "v1",
-  "url": "/openoapi/lifecycletest/v1",
+  "url": "/openoapi/vnfsdk-lifecycletest/v1",
   "protocol": "REST",
   "visualRange": "1",
   "nodes": [
