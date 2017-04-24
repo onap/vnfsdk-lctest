@@ -38,7 +38,7 @@ public class UrlConstant {
     /**
      * NSLCM VNF package onboarding url.
      */
-    public static final String NSLCM_VNFPACKAGE_URL = "/openoapi/nslcm/v1/vnfpackage";
+    public static final String NSLCM_VNFPACKAGE_URL = "/openoapi/nslcm/v1/vnfonboarding";
 
     public static final String QUERY_VNFPACKAGE_URL = "/openoapi/nslcm/v1/vnfpackage/%s";
 
