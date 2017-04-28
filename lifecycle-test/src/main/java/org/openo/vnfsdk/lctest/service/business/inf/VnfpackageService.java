@@ -46,4 +46,13 @@ public interface VnfpackageService {
      */
     JSONObject queryVnfpackage(String csarId);
 
+    /**
+     * <br>
+     *
+     * @param object
+     * @return
+     * @since NFVO 0.5
+     */
+    JSONObject updatestatus(JSONObject object);
+
 }

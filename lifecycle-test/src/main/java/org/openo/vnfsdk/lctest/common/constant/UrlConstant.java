@@ -40,6 +40,9 @@ public class UrlConstant {
      */
     public static final String NSLCM_VNFPACKAGE_URL = "/openoapi/nslcm/v1/vnfonboarding";
 
+    public static final String MARKETPLACE_UPDATE_STATUS_URL =
+            "/openoapi/vnfsdk-marketplace/v1/PackageResource/updatestatus";
+
     public static final String QUERY_VNFPACKAGE_URL = "/openoapi/nslcm/v1/vnfpackage/%s";
 
 }

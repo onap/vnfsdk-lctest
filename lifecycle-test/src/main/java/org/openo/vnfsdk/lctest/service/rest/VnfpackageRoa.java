@@ -71,6 +71,19 @@ public class VnfpackageRoa {
         return vnfpackageService.onboarding(object);
     }
 
+    @POST
+    @Path("/updatestatus")
+    public JSONObject updatestatus(@Context HttpServletRequest context) throws ServiceException {
+        JSONObject object = RequestUtil.getJsonRequestBody(context);
+        if(null == object) {
+            LOGGER.error("function=onboarding; msg=context is null.");
+            throw new ServiceException("org.openo.vnfsdk.lctest.service.rest.VnfpackageRoa.onboarding.null");
+        }
+
+        LOGGER.info("VnfpackageRoa::updatestatus:{}", object.toString());
+        return vnfpackageService.updatestatus(object);
+    }
+
     /**
      * <br>
      *

@@ -58,6 +58,7 @@ public class VnfpackageServiceImpl implements VnfpackageService {
             resJson.put("message", "NS LCM response Error.");
             return resJson;
         }
+        LOGGER.info("VnfpackageServiceImpl::onboarding rsp:{}", rsp);
         return JSONObject.fromObject(rsp);
     }
 
@@ -77,7 +78,31 @@ public class VnfpackageServiceImpl implements VnfpackageService {
             resJson.put("message", "NS LCM response Error.");
             return resJson;
         }
+        LOGGER.info("VnfpackageServiceImpl::queryVnfpackage rsp:{}", rsp);
         return rsp;
+    }
+
+    /**
+     * <br>
+     * 
+     * @param object
+     * @return
+     * @since NFVO 0.5
+     */
+    @Override
+    public JSONObject updatestatus(JSONObject object) {
+        LOGGER.info("VnfpackageServiceImpl::updatestatus:{}", object.toString());
+        Map<String, String> paramsMap = new HashMap<>(3);
+        paramsMap.put("url", UrlConstant.MARKETPLACE_UPDATE_STATUS_URL);
+        paramsMap.put("methodType", RestfulUtil.TYPE_POST);
+        String rsp = RestfulUtil.getRemoteResponseContent(paramsMap, object.toString());
+        if(null == rsp) {
+            JSONObject resJson = new JSONObject();
+            resJson.put("message", "Marketplace response Error.");
+            return resJson;
+        }
+        LOGGER.info("VnfpackageServiceImpl::updatestatus rsp:{}", rsp);
+        return JSONObject.fromObject(rsp);
     }
 
 }
