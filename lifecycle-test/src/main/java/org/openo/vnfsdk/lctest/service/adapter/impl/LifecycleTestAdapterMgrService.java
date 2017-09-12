@@ -25,10 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-import org.openo.baseservice.util.impl.SystemEnvVariablesFactory;
+
 import org.openo.vnfsdk.lctest.common.constant.Constant;
 import org.openo.vnfsdk.lctest.common.constant.UrlConstant;
-import org.openo.vnfsdk.lctest.common.util.RestfulUtil;
+import org.openo.vnfsdk.lctest.common.util.RestConstant;
+
 import org.openo.vnfsdk.lctest.service.adapter.inf.ILifecycleTestAdapter2MSBManager;
 import org.openo.vnfsdk.lctest.service.adapter.inf.ILifecycleTestAdapterMgrService;
 import org.slf4j.Logger;
@@ -57,7 +58,7 @@ public class LifecycleTestAdapterMgrService implements ILifecycleTestAdapterMgrS
         // set MSB URL and mothedtype
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("url", UrlConstant.REST_MSB_REGISTER);
-        paramsMap.put("methodType", RestfulUtil.TYPE_POST);
+        paramsMap.put("methodType", RestConstant.MethodType.POST);
 
         // get LifecycleTest info and raise registration
         try {
@@ -87,7 +88,7 @@ public class LifecycleTestAdapterMgrService implements ILifecycleTestAdapterMgrS
         BufferedInputStream bins = null;
         String fileContent = "";
 
-        String fileName = SystemEnvVariablesFactory.getInstance().getAppRoot() + System.getProperty(Constant.SEPARATOR)
+        String fileName = "./" + System.getProperty(Constant.SEPARATOR)
                 + "etc" + System.getProperty(Constant.SEPARATOR) + "adapterInfo"
                 + System.getProperty(Constant.SEPARATOR) + LIFECYCLETESTINFO;
 

@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.openo.vnfsdk.lctest.common.constant.UrlConstant;
-import org.openo.vnfsdk.lctest.common.util.RestfulUtil;
+import org.openo.vnfsdk.lctest.common.util.RestConstant;
+import org.openo.vnfsdk.lctest.common.util.RestfulClient;
 import org.openo.vnfsdk.lctest.service.business.inf.VnfpackageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,9 @@ import net.sf.json.JSONObject;
 public class VnfpackageServiceImpl implements VnfpackageService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VnfpackageServiceImpl.class);
+    
+    private static String MsbIpAddress = "127.0.0.1";
+    private static  int  MsbPort = 80;
 
     /**
      * <br>
@@ -51,8 +55,8 @@ public class VnfpackageServiceImpl implements VnfpackageService {
         LOGGER.info("VnfpackageServiceImpl::onboarding:{}", object.toString());
         Map<String, String> paramsMap = new HashMap<>(3);
         paramsMap.put("url", UrlConstant.NSLCM_VNFPACKAGE_URL);
-        paramsMap.put("methodType", RestfulUtil.TYPE_POST);
-        String rsp = RestfulUtil.getRemoteResponseContent(paramsMap, object.toString());
+        paramsMap.put("methodType", RestConstant.MethodType.POST);
+        String rsp = null; //RestfulUtil.getRemoteResponseContent(paramsMap, object.toString());
         if(null == rsp) {
             JSONObject resJson = new JSONObject();
             resJson.put("message", "NS LCM response Error.");
@@ -72,7 +76,8 @@ public class VnfpackageServiceImpl implements VnfpackageService {
     @Override
     public JSONObject queryVnfpackage(String csarId) {
         String url = String.format(UrlConstant.QUERY_VNFPACKAGE_URL, csarId);
-        JSONObject rsp = RestfulUtil.getResponseObj(url, RestfulUtil.TYPE_GET);
+        JSONObject rsp = null;//RestfulClient.get(MsbIpAddress, MsbPort, url).getResult();
+        	
         if(null == rsp) {
             JSONObject resJson = new JSONObject();
             resJson.put("message", "NS LCM response Error.");
@@ -94,8 +99,8 @@ public class VnfpackageServiceImpl implements VnfpackageService {
         LOGGER.info("VnfpackageServiceImpl::updatestatus:{}", object.toString());
         Map<String, String> paramsMap = new HashMap<>(3);
         paramsMap.put("url", UrlConstant.MARKETPLACE_UPDATE_STATUS_URL);
-        paramsMap.put("methodType", RestfulUtil.TYPE_POST);
-        String rsp = RestfulUtil.getRemoteResponseContent(paramsMap, object.toString());
+        paramsMap.put("methodType", RestConstant.MethodType.POST);
+        String rsp = null; //RestfulUtil.getRemoteResponseContent(paramsMap, object.toString());
         if(null == rsp) {
             JSONObject resJson = new JSONObject();
             resJson.put("message", "Marketplace response Error.");

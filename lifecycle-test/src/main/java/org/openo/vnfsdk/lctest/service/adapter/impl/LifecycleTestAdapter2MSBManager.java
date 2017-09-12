@@ -18,9 +18,9 @@ package org.openo.vnfsdk.lctest.service.adapter.impl;
 
 import java.util.Map;
 
-import org.openo.baseservice.roa.util.restclient.RestfulResponse;
+
 import org.openo.vnfsdk.lctest.common.constant.Constant;
-import org.openo.vnfsdk.lctest.common.util.RestfulUtil;
+import org.openo.vnfsdk.lctest.common.util.RestResponse;
 import org.openo.vnfsdk.lctest.service.adapter.inf.ILifecycleTestAdapter2MSBManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,28 +43,28 @@ public class LifecycleTestAdapter2MSBManager implements ILifecycleTestAdapter2MS
     public JSONObject registerLifecycleTest(Map<String, String> paramsMap, JSONObject driverInfo) {
         JSONObject resultObj = new JSONObject();
 
-        RestfulResponse rsp = RestfulUtil.getRemoteResponse(paramsMap, driverInfo.toString());
+        RestResponse rsp = new  RestResponse();// = RestfulUtil.getRemoteResponse(paramsMap, driverInfo.toString());
         if(null == rsp) {
             LOG.error("function=registerLifecycleTest,  RestfulResponse is null");
             resultObj.put(Constant.REASON, "RestfulResponse is null.");
             resultObj.put(Constant.RETCODE, Constant.ERROR_CODE);
             return resultObj;
         }
-        LOG.warn("function=registerLifecycleTest, status={}, content={}.", rsp.getStatus(), rsp.getResponseContent());
-        String resultCreate = rsp.getResponseContent();
+        LOG.warn("function=registerLifecycleTest, status={}, content={}.", rsp.getStatusCode(), rsp.getResult());
+        String resultCreate = rsp.getResult();
 
-        if(rsp.getStatus() == Constant.HTTP_CREATED) {
+        if(rsp.getStatusCode() == Constant.HTTP_CREATED) {
             LOG.warn("function=registerLifecycleTest, result={}.", resultCreate);
             resultObj = JSONObject.fromObject(resultCreate);
             resultObj.put("retCode", Constant.HTTP_CREATED);
             return resultObj;
-        } else if(rsp.getStatus() == Constant.HTTP_INVALID_PARAMETERS) {
+        } else if(rsp.getStatusCode() == Constant.HTTP_INVALID_PARAMETERS) {
             LOG.error("function=registerLifecycleTest, msg=MSB return fail,invalid parameters,status={}, result={}.",
-                    rsp.getStatus(), resultCreate);
+                    rsp.getStatusCode(), resultCreate);
             resultObj.put("reason", "MSB return fail,invalid parameters.");
-        } else if(rsp.getStatus() == Constant.HTTP_INNERERROR_CODE) {
+        } else if(rsp.getStatusCode() == Constant.HTTP_INNERERROR_CODE) {
             LOG.error("function=registerLifecycleTest, msg=MSB return fail,internal system error,status={}, result={}.",
-                    rsp.getStatus(), resultCreate);
+                    rsp.getStatusCode(), resultCreate);
             resultObj.put("reason", "MSB return fail,internal system error.");
         }
         resultObj.put("retCode", Constant.ERROR_CODE);

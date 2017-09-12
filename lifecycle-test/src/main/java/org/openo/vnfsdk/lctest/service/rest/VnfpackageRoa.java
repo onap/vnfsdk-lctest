@@ -26,7 +26,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import org.openo.baseservice.remoteservice.exception.ServiceException;
+
 import org.openo.vnfsdk.lctest.common.util.RequestUtil;
 import org.openo.vnfsdk.lctest.service.business.inf.VnfpackageService;
 import org.slf4j.Logger;
@@ -60,11 +60,11 @@ public class VnfpackageRoa {
      * @since NFVO 0.5
      */
     @POST
-    public JSONObject onboarding(@Context HttpServletRequest context) throws ServiceException {
+    public JSONObject onboarding(@Context HttpServletRequest context)  {
         JSONObject object = RequestUtil.getJsonRequestBody(context);
         if(null == object) {
             LOGGER.error("function=onboarding; msg=context is null.");
-            throw new ServiceException("org.openo.vnfsdk.lctest.service.rest.VnfpackageRoa.onboarding.null");
+            //throw new ServiceException("org.openo.vnfsdk.lctest.service.rest.VnfpackageRoa.onboarding.null");
         }
 
         LOGGER.info("VnfpackageRoa::onboarding:{}", object.toString());
@@ -73,11 +73,11 @@ public class VnfpackageRoa {
 
     @POST
     @Path("/updatestatus")
-    public JSONObject updatestatus(@Context HttpServletRequest context) throws ServiceException {
+    public JSONObject updatestatus(@Context HttpServletRequest context)  {
         JSONObject object = RequestUtil.getJsonRequestBody(context);
         if(null == object) {
             LOGGER.error("function=onboarding; msg=context is null.");
-            throw new ServiceException("org.openo.vnfsdk.lctest.service.rest.VnfpackageRoa.onboarding.null");
+            //throw new ServiceException("org.openo.vnfsdk.lctest.service.rest.VnfpackageRoa.onboarding.null");
         }
 
         LOGGER.info("VnfpackageRoa::updatestatus:{}", object.toString());
@@ -96,7 +96,7 @@ public class VnfpackageRoa {
     @GET
     @Path("/{csarId}")
     public JSONObject queryVnfpackage(@Context HttpServletRequest context, @PathParam("csarId") String csarId)
-            throws ServiceException {
+            {
         LOGGER.warn("function=queryVnfpackage, csarId={}", csarId);
         return vnfpackageService.queryVnfpackage(csarId);
     }
