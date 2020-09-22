@@ -2,4 +2,3 @@
 #
 455f1963ec5a3b74db9c78b49dc62761e5856aa1                                      	saml/onap-gerrit-vnfsdk-lctest-committers
 daebbf523be390041a1a9c0e340a6d833aae5043                                      	GitHub Replication
-ldap:cn=onap-gerrit-vnfsdk-lctest-committers,ou=Groups,dc=freestandards,dc=org	ldap/onap-gerrit-vnfsdk-lctest-committers
